@@ -51,10 +51,10 @@ contract Snake is ERC721URIStorage, VRFConsumerBase {
         override
     {
         // The Chainlink VRT has a max gas of 200,000 gas (computation units)
-        // 2M gas
         address nftOwner = requestIdToSender[requestId];
         uint256 tokenId = requestIdToTokenId[requestId];
         _safeMint(nftOwner, tokenId);
+
         // generateSnake
         tokenIdToRandomNumber[tokenId] = randomNumber;
         emit CreatedUnfinishedSnake(tokenId, randomNumber);
@@ -79,8 +79,6 @@ contract Snake is ERC721URIStorage, VRFConsumerBase {
         string memory tokenURI = formatTokenURI(imageURI, randomColor);
         _setTokenURI(tokenId, tokenURI);
         emit CreatedSnake(tokenId, svg);
-
-        // turn that into an Image URI
         // use that imageURI to format into a token URI
     }
 
@@ -122,7 +120,6 @@ contract Snake is ERC721URIStorage, VRFConsumerBase {
         string memory svgBase64Encoded = Base64.encode(
             bytes(string(abi.encodePacked(svg)))
         );
-
         string memory imageURI = string(
             abi.encodePacked(baseURL, svgBase64Encoded)
         );

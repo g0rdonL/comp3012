@@ -8,7 +8,6 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   // A: there is none
   // deploy a fake one
   // for real chain we use real one
-  //
   let linkTokenAddress, vrfCoordinatorAddress;
 
   if (chainId == 31337) {
