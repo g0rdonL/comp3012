@@ -100,7 +100,7 @@ export default function Index() {
 
         })
 
-        if (items.length > 0) {
+        if (tmp.length > 0) {
             setHasSnakes(true)
             setSnakes(tmp)
         }
@@ -129,7 +129,7 @@ export default function Index() {
                 checkCorrectNetwork()
             })
         }
-    })
+    }, [])
 
 
     return (
@@ -145,6 +145,7 @@ export default function Index() {
                     setColor={setColor}
                     snakes={correctNetwork && snakes}
                     hasSnakes={hasSnakes}
+                    currentAccount={currentAccount}
                 />
             </Box>
             <TabPanel value={tab} index={0}>

@@ -4,11 +4,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export const SnakeSelect = ({ color, setColor, snakes, hasSnakes }) => {
+import { nftContractAddress } from '../config.js'
+
+export const SnakeSelect = ({ color, setColor, snakes, hasSnakes, currentAccount }) => {
   return (
     <Box sx={{ mt: "1rem" }}>
       <FormControl fullWidth>
-        {hasSnakes ?
+        {hasSnakes && snakes.length > 0 ?
           <>
             <InputLabel id="snake-select-label">Select Snake</InputLabel>
             <Select
@@ -17,7 +19,7 @@ export const SnakeSelect = ({ color, setColor, snakes, hasSnakes }) => {
               label="Select Snake"
               onChange={e => setColor(e.target.value)}
             >
-              {snakes.map(snake => {
+              {snakes && snakes.map(snake => {
                 if (snake.meta && snake.meta.attributes[0] && snake.tokenId) {
                   return <MenuItem value={snake.meta.attributes[0].value}>
                     <div>
@@ -40,8 +42,13 @@ export const SnakeSelect = ({ color, setColor, snakes, hasSnakes }) => {
               labelId="snake-select-label"
               value={color}
               label="Select Snake"
-              disabled
-            />
+            >
+              <MenuItem value="">
+                <a target="_blank" rel="noreferrer" href={`https://rinkeby.rarible.com/user/${currentAccount}/owned?filter%5Bcollections%5D%5B%5D=${nftContractAddress}`}>
+                  If you do have a snake, referesh its metadata
+                </a>
+              </MenuItem>
+            </Select>
           </>
         }
       </FormControl>

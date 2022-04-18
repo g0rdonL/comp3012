@@ -47,7 +47,7 @@ export const Leaderboard = ({ color }) => {
 
   useEffect(() => {
     getScores()
-  })
+  }, [])
 
   return (<>
     <SnakeGame snakeColor={color} getScores={getScores} />
