@@ -5,16 +5,13 @@ import axios from 'axios'
 
 import { WalletButton } from "../components/WalletButton"
 import { SnakeSelect } from "../components/SnakeSelect"
+import { MintTab } from "../components/MintTab"
+import { GameTab } from "../components/GameTab"
 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-
-
-
-import { MintTab } from "./MintTab"
-import { GameTab } from "./GameTab"
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
