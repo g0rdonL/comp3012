@@ -67,7 +67,7 @@ export const MintTab = ({ currentAccount, correctNetwork, checkIfWalletIsConnect
         setMintingStage(5)
 
         setUrl(
-          `https://rinkeby.rarible.com/token/${nftContractAddress}:${tokenId}?tab=details`
+          `https://rinkeby.rarible.com/token/${nftContractAddress}:${parseInt(tokenId)}?tab=details`
         )
         checkIfWalletIsConnected()
       } else {
