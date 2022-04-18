@@ -62,7 +62,7 @@ export const MintTab = ({ currentAccount, correctNetwork, checkIfWalletIsConnect
         await new Promise((r) => setTimeout(r, 180000));
         console.log(`Finish the mint...`);
         setMintingStage(4)
-        let finish_tx = await snake.finishMint(tokenId, { gasLimit: 15000000 });
+        let finish_tx = await snake.finishMint(tokenId, { gasLimit: 20000000 });
         await finish_tx.wait(1);
         setMintingStage(5)
 
