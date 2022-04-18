@@ -18,21 +18,31 @@ export const Leaderboard = ({ color }) => {
   const [scores, setScores] = useState([])
   const [users, setUsers] = useState([])
 
-  const { ethereum } = window
 
-  const provider = new ethers.providers.Web3Provider(ethereum)
-  const leaderboardContract = new ethers.Contract(leaderboardContractAddress, LB.abi, provider)
 
   const getScores = async () => {
     let tmpUsers = []
     let tmpScores = []
-    for (var i = 0; i < 10; i++) {
-      let data = await leaderboardContract.leaderboard(i)
-      tmpScores[i] = data.score.toNumber()
-      tmpUsers[i] = data.user
+
+    const { ethereum } = window
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum)
+
+      let chainId = await ethereum.request({ method: 'eth_chainId' })
+      const rinkebyChainId = '0x4'
+
+      if (chainId !== rinkebyChainId) return
+
+      const leaderboardContract = new ethers.Contract(leaderboardContractAddress, LB.abi, provider)
+
+      for (var i = 0; i < 10; i++) {
+        let data = await leaderboardContract.leaderboard(i)
+        tmpScores[i] = data.score.toNumber()
+        tmpUsers[i] = data.user
+      }
+      setScores(tmpScores)
+      setUsers(tmpUsers)
     }
-    setScores(tmpScores)
-    setUsers(tmpUsers)
   }
 
   useEffect(() => {
