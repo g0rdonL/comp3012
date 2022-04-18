@@ -33,12 +33,11 @@ export const Leaderboard = ({ color }) => {
     }
     setScores(tmpScores)
     setUsers(tmpUsers)
-
-
   }
+
   useEffect(() => {
     getScores()
-  }, [])
+  })
 
   return (<>
     <SnakeGame snakeColor={color} getScores={getScores} />

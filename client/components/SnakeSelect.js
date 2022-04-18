@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -36,12 +35,11 @@ export const SnakeSelect = ({ color, setColor, snakes, hasSnakes }) => {
           </>
           :
           <>
-            <InputLabel id="snake-select-label">Get yourself a snake in "Mint" tab</InputLabel>
+            <InputLabel id="snake-select-label">Get yourself a snake in &quot;Mint&quot; tab</InputLabel>
             <Select
               labelId="snake-select-label"
               value={color}
               label="Select Snake"
-              // onChange={handleChange}
               disabled
             />
           </>

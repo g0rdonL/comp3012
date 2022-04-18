@@ -1,4 +1,3 @@
-import SnakeGame from "../components/SnakeGame"
 import { Leaderboard } from "../components/Leaderboard"
 
 

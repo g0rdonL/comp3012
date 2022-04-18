@@ -50,7 +50,7 @@ function a11yProps(index) {
 
 
 
-export default function index() {
+export default function Index() {
 
     // states
     const [tab, setTab] = useState(0);
@@ -123,10 +123,16 @@ export default function index() {
                 checkIfWalletIsConnected()
                 checkCorrectNetwork()
             })
+            window.ethereum.on('connect', () => {
+                checkIfWalletIsConnected()
+                checkCorrectNetwork()
+            })
+            window.ethereum.on('disconnect', () => {
+                checkIfWalletIsConnected()
+                checkCorrectNetwork()
+            })
         }
-
-
-    }, [])
+    })
 
 
     return (
