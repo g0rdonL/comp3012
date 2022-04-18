@@ -102,7 +102,7 @@ export const MintTab = ({ currentAccount, correctNetwork, checkIfWalletIsConnect
     <>
       <Stack spacing={2}>
         <Item>
-          Welcome to the minting page <br /><br />
+          Welcome to the Snake game built on Rinkeby (Ethereum) <br /><br />
           Get yourself some LINK and ETH <a href={`https://faucets.chain.link/rinkeby`} target="_blank" rel="noreferrer">here</a> <br /><br />
           View the collection on Rarible <a href={`https://rinkeby.rarible.com/collection/${nftContractAddress}/items`} target="_blank" rel="noreferrer">here</a> <br /><br />
           <span style={{ color: "red" }}> Warning: Please DO NOT close this page while minting</span>
