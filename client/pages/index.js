@@ -84,19 +84,13 @@ export default function index() {
     const checkCorrectNetwork = async () => {
         const { ethereum } = window
         let chainId = await ethereum.request({ method: 'eth_chainId' })
-        console.log('Connected to chain:' + chainId)
-
         const rinkebyChainId = '0x4'
 
-        const devChainId = 1337
-        const localhostChainId = `0x${Number(devChainId).toString(16)}`
-
-        if (chainId !== rinkebyChainId && chainId !== localhostChainId) {
+        if (chainId !== rinkebyChainId) {
             setCorrectNetwork(false)
         } else {
             setCorrectNetwork(true)
         }
-        console.log(currentAccount)
     }
 
     const getSnakes = async (account) => {
