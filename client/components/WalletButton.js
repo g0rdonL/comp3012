@@ -1,4 +1,5 @@
-import { RightButton } from "../styled"
+import Button from '@mui/material/Button';
+
 
 export const WalletButton = ({ correctNetwork, currentAccount, setCurrentAccount }) => {
 
@@ -33,24 +34,38 @@ export const WalletButton = ({ correctNetwork, currentAccount, setCurrentAccount
     }
   }
 
+  const promptChangeNetwork = async () => {
+    const { ethereum } = window
+    const rinkebyChainId = '0x4'
+
+    ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{
+        chainId: rinkebyChainId,
+      }]
+    });
+  }
+
   return (
     <>
       {!correctNetwork ? (
-        <RightButton style={{ color: 'red' }}>
+        <Button
+          variant="contained"
+          color="error"
+          sx={{ ml: "auto" }}
+          onClick={promptChangeNetwork}
+        >
           Wrong Network
-        </RightButton>
+        </Button>
       ) : (
         currentAccount == '' ? (
-          <RightButton
-            style={{ color: 'black' }}
-            onClick={connectWallet}
-          >
+          <Button variant="outline" sx={{ ml: "auto" }} onClick={connectWallet} >
             Connect Wallet
-          </RightButton>
+          </Button>
         ) : (
-          <RightButton style={{ color: 'green' }}>
+          <Button variant="contained" color="success" sx={{ ml: "auto" }}>
             Connected {currentAccount.substring(0, 6)}
-          </RightButton>
+          </Button>
         )
       )}
     </>

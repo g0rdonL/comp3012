@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Leaderboard.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity >=0.6.6;\n\ncontract Leaderboard {\n    // lists top 10 users\n    uint256 leaderboardLength = 10;\n\n    // create an array of Users\n    mapping(uint256 => User) public leaderboard;\n\n    // each user has a username and score\n    struct User {\n        string user;\n        uint256 score;\n    }\n\n    // calls to update leaderboard\n    function addScore(string memory user, uint256 score)\n        public\n        returns (bool result)\n    {\n        // if the score is too low, don't update\n        if (leaderboard[leaderboardLength - 1].score >= score) return false;\n\n        // loop through the leaderboard\n        for (uint256 i = 0; i < leaderboardLength; i++) {\n            // find where to insert the new score\n            if (leaderboard[i].score < score) {\n                // shift leaderboard\n                User memory currentUser = leaderboard[i];\n                for (uint256 j = i + 1; j < leaderboardLength + 1; j++) {\n                    User memory nextUser = leaderboard[j];\n                    leaderboard[j] = currentUser;\n                    currentUser = nextUser;\n                }\n\n                // insert\n                leaderboard[i] = User({user: user, score: score});\n\n                // delete last from list\n                delete leaderboard[leaderboardLength];\n\n                return true;\n            }\n        }\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
