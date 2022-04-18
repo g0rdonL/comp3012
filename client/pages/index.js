@@ -51,7 +51,6 @@ export default function Index() {
 
     // states
     const [tab, setTab] = useState(0);
-    const [hasSnakes, setHasSnakes] = useState(false)
     const [snakes, setSnakes] = useState([])
     const [color, setColor] = useState("")
     const [currentAccount, setCurrentAccount] = useState('')
@@ -96,12 +95,13 @@ export default function Index() {
         let items = data.data.items
         let tmp = []
         items.forEach((item) => {
-            if (item.contract === nftContractAddress) tmp.push(item)
-
+            if (item.contract === nftContractAddress &&
+                item.meta &&
+                item.meta.attributes[0] &&
+                item.tokenId) tmp.push(item)
         })
 
         if (tmp.length > 0) {
-            setHasSnakes(true)
             setSnakes(tmp)
         }
 
@@ -144,7 +144,6 @@ export default function Index() {
                     color={color}
                     setColor={setColor}
                     snakes={correctNetwork && snakes}
-                    hasSnakes={hasSnakes}
                     currentAccount={currentAccount}
                 />
             </Box>

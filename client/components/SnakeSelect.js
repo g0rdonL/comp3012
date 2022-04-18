@@ -6,11 +6,11 @@ import Select from '@mui/material/Select';
 
 import { nftContractAddress } from '../config.js'
 
-export const SnakeSelect = ({ color, setColor, snakes, hasSnakes, currentAccount }) => {
+export const SnakeSelect = ({ color, setColor, snakes, currentAccount }) => {
   return (
     <Box sx={{ mt: "1rem" }}>
       <FormControl fullWidth>
-        {hasSnakes && snakes.length > 0 ?
+        {snakes.length > 0 ?
           <>
             <InputLabel id="snake-select-label">Select Snake</InputLabel>
             <Select
